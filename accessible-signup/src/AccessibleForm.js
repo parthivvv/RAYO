@@ -63,41 +63,48 @@ const AccessibleForm = ({ formType, setIsLoggedIn}) => {
   };
 
   const handleSubmit = async (event) => {
-    event.preventDefault();
-    const errors = validate(formData);
-    setFormErrors(errors);
+  event.preventDefault(); // Prevent the default form submission behavior
 
-    if (Object.keys(errors).length === 0) {
-      setIsSubmitting(true);
-      try {
-        const endpoint = formType === 'signup' ? '/signup' : '/signin';
-        const response = await fetch(`https://rayo-git-main-parthivs-projects-cc625ab9.vercel.app${endpoint}`, {
-          method: 'POST',
-          headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify(formData),
-        });
+  setIsSubmitting(true); // Set isSubmitting to true to indicate the process has started
 
-        const data = await response.json();
-        if (response.ok) {
-          localStorage.setItem('userName', data.name);
-          setIsLoggedIn(true);
-          speak(formType === 'signup' ? "Sign Up Successful" : "Sign In Successful", 0.8);
-          navigate('/welcome');
-        } else {
-          speak("An error occurred, please check your information and try again. This email might already be in use.", 0.8);
-        }
-      } catch (error) {
-        console.error('Error:', error);
-        speak("An error occurred. Please try again.", 0.8);
-      }
-      setIsSubmitting(false);
-    } else {
-      // Focus on the first input field with an error
-      const firstErrorField = Object.keys(errors)[0];
-      document.getElementById(firstErrorField)?.focus();
-      speakWithDelay(errors[firstErrorField], 500, 0.8);
+  // Define the endpoint based on the form type (signup or signin)
+  const endpoint = formType === 'signup' ? '/signup' : '/signin';
+  const url = `https://rayo-git-main-parthivs-projects-cc625ab9.vercel.app${endpoint}`;
+
+  try {
+    const response = await fetch(url, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(formData), // Assuming formData is your state containing the form data
+    });
+
+    if (!response.ok) {
+      throw new Error('Network response was not ok');
     }
-  };
+    
+    const data = await response.json();
+    console.log(data);
+    // Assuming the API response includes a "name" or similar property upon success
+    if (data.name) {
+      localStorage.setItem('userName', data.name); // Store user's name or token if needed
+      setIsLoggedIn(true); // If you are managing logged-in state
+      navigate('/welcome'); // Redirecting user to a welcome page
+    } else {
+      // Handle cases where login/signup was not successful but didn't throw an error
+      // For example, invalid credentials
+      throw new Error('Login/Signup was unsuccessful');
+    }
+  } catch (error) {
+    console.error('There has been a problem with your fetch operation:', error);
+    // Here, handle how you want to display the error (e.g., setting an error message state and showing it in the form)
+    speak("An error occurred. Please try again.", 0.8); // Assuming you have a `speak` function to handle text-to-speech
+  } finally {
+    setIsSubmitting(false); // Reset isSubmitting regardless of request outcome
+  }
+};
+
 
   
   
