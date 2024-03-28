@@ -71,7 +71,7 @@ const AccessibleForm = ({ formType, setIsLoggedIn}) => {
       setIsSubmitting(true);
       try {
         const endpoint = formType === 'signup' ? '/signup' : '/signin';
-        const response = await fetch(`http://localhost:5000${endpoint}`, {
+        const response = await fetch(`https://rayo-git-main-parthivs-projects-cc625ab9.vercel.app${endpoint}`, {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
           body: JSON.stringify(formData),
