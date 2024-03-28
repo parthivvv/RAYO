@@ -1,0 +1,125 @@
+/* Overall form layout */
+/*WebAIM's Contrast Checker used to make sure 4.5:1 ratio is followed */
+form {
+    max-width: 600px;
+    margin: 20px auto;
+    padding: 20px;
+    border: 1.8px solid #000000;
+    border-radius: 5px;
+    background-color: white;
+  }
+  /* AccessibleForm.css - Ensure high contrast and readable font sizes */
+  .form__error {
+    color: #ff000d; /* High contrast color for errors */
+    background-color: #ffbabaeb; /* Light background for readability */
+    padding: 10px;
+    font-size: 1.4em;
+    margin-bottom: 10px;
+    border-radius: 5px;
+    width: 80%; /* Set the width to 80% of its container */
+    margin: 0 auto 10px; /* Center the div by setting the left and right margins to auto */
+  }
+  
+  
+  /* Enhance focus visibility for interactive elements */
+  input:focus, button:focus {
+    outline: 2px solid #005acb; /* High visibility outline */
+  }
+  
+  
+  /* Style for form headings */
+  form h1 {
+    margin-top: -5px;
+    font-size: 2em; /* Large, readable font size */
+    margin-bottom: 40px;
+  }
+  
+  /* Label styling */
+  label {
+    display: block; /* Ensure labels are on their own line */
+    margin-bottom: 5px;
+    font-weight: bold;
+    font-size: 1.7em; /* Larger font for better readability */
+  }
+  
+  /* Input field styling */
+  input[type="text"],
+  input[type="email"],
+  input[type="password"] {
+    width: 80%;
+    padding: 10px;
+    margin-bottom: 20px;
+    border: 1px solid #3c3c3c;
+    border-radius: 4px;
+    font-size: 1.4em; /* Large enough for easy reading */
+  }
+  
+  /* Button styling for clear action indication */
+  button[type="submit"] {
+    background-color: #0066EB; /* Bootstrap primary color */
+    color: white;
+    padding: 10px 20px;
+    border: 1px solid #000000;
+    border-radius: 4px;
+    cursor: pointer;
+    font-weight: bold;
+    font-size: 1.4em; /* Larger button text */
+  }
+
+  
+  button[type="submit"]:hover {
+    outline: 1px solid #000000; /* Blue outline for high visibility */
+    background-color: #00da5e; /* Darker shade on hover */
+  }
+  
+  /* Navigation styling */
+  nav ul {
+    list-style-type: none;
+    padding: 0;
+  }
+  
+  nav ul li {
+    display: inline;
+    margin-right: 10px;
+  }
+  
+  nav ul li a {
+    text-decoration: none;
+    font-size: 1.2em; /* Larger, more clickable links */
+    color: #007bff; /* Bootstrap primary link color */
+  }
+  
+  nav ul li a:hover {
+    text-decoration: underline;
+  }
+
+  /* Targeting all text, email, and password inputs */
+input[type="text"],
+input[type="email"],
+input[type="password"] {
+  /* Initial state styles */
+  background-color: #fff; /* Light background */
+  color: #000; /* Dark text */
+  border: 1px solid #3c3c3c; /* Contrast border */
+  /* Other styling properties */
+}
+
+input[type="text"]:hover,
+input[type="email"]:hover,
+input[type="password"]:hover {
+  /* Hover state styles */
+  background-color: #fff9d2; /* Slightly darker background on hover */
+  border-color: #000; /* Higher contrast border */
+}
+/* Targeting all text, email, and password inputs for focus state */
+input[type="text"]:focus,
+input[type="email"]:focus,
+input[type="password"]:focus {
+  /* Highlight styles */
+  background-color: #fff9d2; /* Light blue background for highlight */
+  border: 2px solid #ff6a00; /* Darker blue border for high visibility */
+  box-shadow: 0 0 5px rgba(0, 92, 203, 0.5); /* Soft glow effect for additional emphasis */
+  outline: none; /* Removes the default outline to use custom styles */
+}
+
+

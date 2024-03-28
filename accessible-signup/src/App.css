@@ -1,0 +1,204 @@
+
+.App {
+  margin-top: 30px;
+  text-align: center;
+}
+
+.App-logo {
+  height: 40vmin;
+  pointer-events: none;
+}
+/* Resets list styles and padding for the navigation */
+nav ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  justify-content: center; /* Centers the nav items */
+  gap: 60px; /* Adds space between nav items */
+}
+
+/* Styles for the links to make them appear as buttons */
+nav a {
+  font-weight: bold;
+  display: inline-block;
+  padding: 10px 20px;
+  outline: 1px solid #ffffff; /* Blue outline for high visibility */
+  background-color: rgb(0, 109, 226); /* Bootstrap primary color for background */
+  color: white; /* Ensures text is white for visibility */
+  text-decoration: none;
+  border-radius: 5px;
+  font-size: 1.4em;
+  transition: background-color 0.3s ease; /* Smooth transition for hover effect */
+}
+
+/* Improves accessibility for keyboard users by adding a focus style */
+nav a:focus,
+nav a:hover {
+  outline: 2px solid #000000; /* Blue outline for high visibility */
+  background-color: #00da5e; /* Darker shade on focus/hover for the background */
+  color: white; /* Keeps text color white on hover/focus for visibility */
+}
+
+/* Adds a visually hidden class for accessible labeling (if needed) */
+.visually-hidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  margin: -1px;
+  padding: 0;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  border: 0;
+}
+
+
+@media (prefers-reduced-motion: no-preference) {
+  .App-logo {
+    animation: App-logo-spin infinite 20s linear;
+  }
+}
+
+.App-header {
+  background-color: #282c34;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-size: calc(10px + 2vmin);
+  color: white;
+}
+
+
+
+@keyframes App-logo-spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+/* High contrast mode adjustments */
+.high-contrast {
+  background-color: #000; /* Dark background for high contrast */
+  color: #000000; /* Light text for high contrast */
+}
+
+.high-contrast input[type="text"],
+.high-contrast input[type="email"],
+.high-contrast input[type="password"],
+.high-contrast button[type="submit"] {
+  color: #000; /* Dark text for input and buttons */
+  background-color: #fff; /* Light background for inputs and buttons */
+  border: 2px solid rgb(0, 179, 255);
+}
+
+.high-contrast nav ul li a {
+  color: #ff0; /* Bright link color for high contrast */
+}
+.high-contrast form {
+  background-color: #000;
+  color:white;
+  border: 1.8px solid #FFFFFF; /* Makes the border white in high-contrast mode */
+}
+
+
+.high-contrast .form__error {
+  background-color: #ff0; /* Bright background for error messages */
+  color: #000; /* Dark text for error messages */
+}
+
+.toggle-contrast {
+  padding: 10px 20px;
+  font-size: 1.4em;
+  font-weight: bold;
+  background-color: #ffffff; /* Light background for visibility */
+  color: #000000; /* Dark text color for contrast */
+  border: 2px solid #333; /* Solid border to stand out */
+  border-radius: 5px; /* Rounded corners for modern look */
+  cursor: pointer; /* Cursor indicates it's clickable */
+  transition: background-color 0.3s, color 0.3s; /* Smooth transition for hover and focus */
+  outline: none; /* Custom focus style instead of default outline */
+  position: fixed; /* Fixed position to be always accessible on the screen */
+  bottom: 20px; /* Position from the bottom of the viewport */
+  right: 20px; /* Position from the right of the viewport */
+}
+
+.toggle-contrast:hover, .toggle-contrast:focus {
+  background-color: #333; /* Darker background on hover/focus for visibility */
+  color: #f0f0f0; /* Light text color for contrast */
+  border-color: #f0f0f0; /* Border color changes to match the text color */
+}
+
+/* Styles for when high contrast mode is active */
+.high-contrast .toggle-contrast {
+  background-color: #000;
+  color: #fff;
+  border-color: #fff;
+}
+
+.high-contrast .toggle-contrast:hover, .high-contrast .toggle-contrast:focus {
+  background-color: #fff;
+  color: #000;
+  border-color: #000;
+}
+
+/* High contrast mode: Initial state styles for input fields */
+.high-contrast input[type="text"],
+.high-contrast input[type="email"],
+.high-contrast input[type="password"] {
+  background-color: #fff; /* Light background for high contrast */
+  color: #000; /* Dark text for high contrast */
+  border: 2px solid #0091ff; /* High contrast border */
+  /* Maintain other properties as needed */
+}
+
+/* High contrast mode: Hover state styles */
+.high-contrast input[type="text"]:hover,
+.high-contrast input[type="email"]:hover,
+.high-contrast input[type="password"]:hover {
+  background-color: #fff9d2; /* Adjusted background color for hover in high contrast */
+  border-color: #000; /* Adjusted border color for higher contrast on hover */
+}
+
+/* High contrast mode: Focus state styles */
+.high-contrast input[type="text"]:focus,
+.high-contrast input[type="email"]:focus,
+.high-contrast input[type="password"]:focus {
+  background-color: #fff9d2; /* Adjusted background color for focus in high contrast */
+  border: 2px solid #ff6a00; /* Enhanced border for visibility on focus */
+  box-shadow: 0 0 5px rgba(255, 106, 0, 0.5); /* Adjusted glow effect for emphasis in high contrast */
+  outline: none; /* Custom focus style, removing default outline */
+}
+
+.high-contrast button[type="submit"] {
+  background-color: #007bff; /* Dark background for high contrast */
+  font-weight: bold;
+  color: #fff; /* Light text for high contrast */
+}
+
+.high-contrast button[type="submit"]:hover {
+  background-color: rgb(255, 255, 255); /* white on hover for high visibility */
+  color: #000; /* Dark text for readability */
+}
+
+
+
+.high-contrast h1 {
+  color: white;
+}
+.high-contrast .logout-button
+{
+  border: 2px solid #ffffff;
+
+}
+
+.high-contrast .cb-chatbot {
+  background-color:rgb(0, 0, 0);
+  border: 1px solid #ddd;
+  max-width: 600px;
+  margin: auto;
+}
