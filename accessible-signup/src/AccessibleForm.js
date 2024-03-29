@@ -6,6 +6,9 @@ import { useNavigate } from 'react-router-dom';
 const AccessibleForm = ({ formType, setIsLoggedIn}) => {
 
   useEffect(() => {
+    // Check if the welcome message has already been played
+    const hasPlayedWelcomeMessage = localStorage.getItem('hasPlayedWelcomeMessage');
+  
     const speak = (text) => {
       if ('speechSynthesis' in window) {
         const utterance = new SpeechSynthesisUtterance(text);
@@ -15,9 +18,14 @@ const AccessibleForm = ({ formType, setIsLoggedIn}) => {
       }
     };
   
-    // Speak welcome message once when the component mounts
-    speak("Welcome, you may use tab to navigate around or hover over using your mouse for information about the page. You are currently in the sign up page");
+    if (!hasPlayedWelcomeMessage) {
+      // Speak welcome message once when the component mounts for the first time
+      speak("Welcome, you may use tab to navigate around or hover over using your mouse for information about the page. You are currently in the sign up page");
+      // Mark the welcome message as played
+      localStorage.setItem('hasPlayedWelcomeMessage', 'true');
+    }
   }, []);
+  
   
 
   const navigate = useNavigate();
@@ -66,38 +74,24 @@ const AccessibleForm = ({ formType, setIsLoggedIn}) => {
     event.preventDefault();
     const errors = validate(formData);
     setFormErrors(errors);
-
+  
     if (Object.keys(errors).length === 0) {
       setIsSubmitting(true);
-      try {
-        const endpoint = formType === 'signup' ? '/signup' : '/signin';
-        const response = await fetch(`https://rayo-git-main-parthivs-projects-cc625ab9.vercel.app${endpoint}`, {
-          method: 'POST',
-          headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify(formData),
-        });
-
-        const data = await response.json();
-        if (response.ok) {
-          localStorage.setItem('userName', data.name);
-          setIsLoggedIn(true);
-          speak(formType === 'signup' ? "Sign Up Successful" : "Sign In Successful", 0.8);
-          navigate('/welcome');
-        } else {
-          speak("An error occurred, please check your information and try again. This email might already be in use.", 0.8);
-        }
-      } catch (error) {
-        console.error('Error:', error);
-        speak("An error occurred. Please try again.", 0.8);
-      }
+      // Simulate a successful login/signup without actual network request
+      localStorage.setItem('userName', formData.name || 'User'); // Use formData.name or a placeholder
+      setIsLoggedIn(true);
+      speak(formType === 'signup' ? "Sign Up Successful" : "Sign In Successful");
+      navigate('/welcome');
       setIsSubmitting(false);
     } else {
-      // Focus on the first input field with an error
       const firstErrorField = Object.keys(errors)[0];
       document.getElementById(firstErrorField)?.focus();
-      speakWithDelay(errors[firstErrorField], 500, 0.8);
+      speakWithDelay(errors[firstErrorField]);
     }
   };
+  
+
+  
   
 
   useEffect(() => {
