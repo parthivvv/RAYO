@@ -7,6 +7,15 @@ function Navigation({isLoggedIn, setIsLoggedIn}) {
   let navigate = useNavigate();
   console.error(isLoggedIn);
 
+  const speak = (text) => {
+    if ('speechSynthesis' in window) {
+      const utterance = new SpeechSynthesisUtterance(text);
+      speechSynthesis.cancel(); // Clear any previously scheduled speech synthesis
+      speechSynthesis.speak(utterance);
+    } else {
+      console.error("Your browser does not support speech synthesis.");
+    }
+  };
   const speakWithDelay = (text) => {
     if ('speechSynthesis' in window) {
       const utterance = new SpeechSynthesisUtterance(text);
@@ -20,7 +29,7 @@ function Navigation({isLoggedIn, setIsLoggedIn}) {
   };
 
   const handleLogout = () => {
-    speakWithDelay("Logging out"); // Provide audible feedback
+    speak("Logging out, you are in the sign in page"); // Provide audible feedback
     localStorage.removeItem('userName'); // Clear user-related storage indicating logged out
     navigate('/signin'); // Navigate to the sign-in page
     setIsLoggedIn(false);
@@ -30,7 +39,7 @@ function Navigation({isLoggedIn, setIsLoggedIn}) {
     <div className="navigation-container">
       {isLoggedIn ? (
         location.pathname !== '/signin' && location.pathname !== '/signup' && (
-          <button onClick={handleLogout} className="logout-button"  aria-label="Log out" onMouseEnter={() => speakWithDelay("Log out")} onFocus={() => speakWithDelay("Click to Log out")}>
+          <button onClick={handleLogout} className="logout-button"  aria-label="Log out" onMouseEnter={() => speakWithDelay("Log out")} onFocus={() => speak("Click to Log out")}>
             Logout
           </button>
         )
