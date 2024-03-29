@@ -1,5 +1,5 @@
 // pages/api/signup.js
-import clientPromise from "../../utils/mongodb";
+import clientPromise from "../utils/mongodb";
 import bcrypt from "bcryptjs";
 
 export default async function handler(req, res) {
